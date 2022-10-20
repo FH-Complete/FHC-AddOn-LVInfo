@@ -149,12 +149,13 @@ if($rechte->isBerechtigt('addon/lvinfoAdmin'))
 else
 {
 	$stg_arr = $rechte->getStgKz('addon/lvinfo');
-	$studiengang->loadArray($stg_arr);
+	$studiengang->loadArray($stg_arr, 'typ, kurzbz');
 }
 
+$sem_arr = array();
 foreach($studiengang->result as $row)
 {
-	$stg_arr[$row->studiengang_kz]['max_semester'] = $row->max_semester;
+	$sem_arr[$row->studiengang_kz]['max_semester'] = $row->max_semester;
 }
 echo '<h1>Kopieren von LV-Informationen</h1>';
 echo '<form action="copy.php" method="POST" name="auswahlFrm">';
@@ -189,7 +190,7 @@ echo '
  */
 function printAuswahl($typ, &$studiengang_kz, &$semester, &$studiensemester, &$lehrveranstaltung_id)
 {
-	global $studiengang, $stg_arr, $db;
+	global $studiengang, $sem_arr, $db;
 	echo '
 	<table>
 	<tr>
@@ -212,7 +213,7 @@ function printAuswahl($typ, &$studiengang_kz, &$semester, &$studiensemester, &$l
 		<td>Semester:</td>
 		<td><select name="'.$typ.'_semester" onchange="window.document.auswahlFrm.submit()">';
 
-	for($i = 1; $i <= $stg_arr[$studiengang_kz]['max_semester']; $i++)
+	for($i = 1; $i <= $sem_arr[$studiengang_kz]['max_semester']; $i++)
 	{
 		if($semester == '')
 			$semester = $i;

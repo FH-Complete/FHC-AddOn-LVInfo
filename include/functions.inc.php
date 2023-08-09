@@ -181,7 +181,7 @@ function printInfoTable($lehrveranstaltung_id, $studiensemester_kurzbz, $sprache
 
 			$leitung[] = $db->convert_html_chars(trim($benutzer->titelpre.' '.$benutzer->vorname.' '.$benutzer->nachname.' '.$benutzer->titelpost));
 		}
-		if (count($leitung) == 0)
+		if (numberOfElements($leitung) == 0)
 			$leitung[] = '-';
 	}
 	$koordinator = array();
@@ -227,7 +227,7 @@ function printInfoTable($lehrveranstaltung_id, $studiensemester_kurzbz, $sprache
 					$lkt_arr[]=$row->uid;
 				}
 				//if lektor is KOLLISIONSFREIE_USER (e.g. dummy) but other lektors exist, do not pass to $lektoren
-				elseif (in_array($row->uid, unserialize(KOLLISIONSFREIE_USER)) && count($lem->result) > 1)
+				elseif (in_array($row->uid, unserialize(KOLLISIONSFREIE_USER)) && numberOfElements($lem->result) > 1)
 				{
 					$lkt_arr[]=$row->uid;
 				}
@@ -314,7 +314,7 @@ function printInfoTable($lehrveranstaltung_id, $studiensemester_kurzbz, $sprache
 				(
 					<i>'.$p->t('global/leitung').'</i>: '.implode(', ', $leitung).' ';
 
-	if(count($koordinator)>0)
+	if(numberOfElements($koordinator)>0)
 		echo '<i>'.$p->t('global/koordination').'</i>: '.implode(', ', $koordinator);
 
 	echo '			)

@@ -330,7 +330,7 @@ if(isset($_POST['save']) || isset($_POST['saveAndSend']))
 			$to = array_unique($to);
 
 			// Wenn kein Empfaenger gefunden wurde, an die Mailadresse des Studiengangs schicken
-			if (count($to) == 0)
+			if (numberOfElements($to) == 0)
 				$to[] = $stg_hlp->email;
 
 			$to = implode(',', $to);
@@ -580,7 +580,7 @@ else
 		<td>'.$p->t('lvinfo/lvmodul').'</td>
 		<td><SELECT name="lv_id" onChange="window.document.auswahlFrm.submit();">';
 
-        if(count($lv_obj->lehrveranstaltungen)>0)
+        if(numberOfElements($lv_obj->lehrveranstaltungen)>0)
         {
             //Wenn die übergebene LV_ID nicht in der Liste der geladenen Objekte ist,
             // Dann die erste LV in der Liste markieren
@@ -835,7 +835,7 @@ if (!$lvinfo_set->result == '')
 	}
 	$lockSend = false;
 	// Wenn kein Empfaenger gefunden wurde, an die Mailadresse des Studiengangs schicken
-	if (count($empfaenger) == 0)
+	if (numberOfElements($empfaenger) == 0)
 	{
 		// Wenn keine Mailadresse beim Studiengang hinterlegt ist, Hinweis ausgeben und Freigabebutton sperren
 		if ($stg_hlp->email != '')
@@ -850,7 +850,7 @@ if (!$lvinfo_set->result == '')
 
 	// Alle Eintraege Anzeigen die nicht im aktuellen Set sind und
 	// beim Speichern geloescht werden
-	if(count($inInfoAberNichtImSet)>0)
+	if(numberOfElements($inInfoAberNichtImSet)>0)
 	{
 		echo '<tr><td colspan="6" align="center">'.$p->t('lvinfo/alteDatenLoeschen').'</td></tr>';
 		foreach($inInfoAberNichtImSet as $row_nichtimset)

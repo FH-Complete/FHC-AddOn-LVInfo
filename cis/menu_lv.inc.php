@@ -64,7 +64,7 @@ if(!defined('CIS_LEHRVERANSTALTUNG_LVINFO_ANZEIGEN') || CIS_LEHRVERANSTALTUNG_LV
 			$link="../../../addons/lvinfo/cis/view.php?lehrveranstaltung_id=".urlencode($lvid)."&studiensemester_kurzbz=".urlencode($angezeigtes_stsem);
 			$onclick="javascript:window.open('".$link."','Lehrveranstaltungsinformation','width=700,height=750,resizable=yes,menuebar=no,toolbar=no,status=yes,scrollbars=yes');";
 			$link='#';
-			$c4_link= APP_ROOT."addons/lvinfo/cis/view.php?lehrveranstaltung_id=".urlencode($lvid)."&studiensemester_kurzbz=".urlencode($angezeigtes_stsem);
+			$c4_link= APP_ROOT."cis.php/Cis/MyLv/Info/".urlencode($angezeigtes_stsem)."/". urlencode($lvid);
 			
 		}
 
@@ -95,6 +95,7 @@ if(!defined('CIS_LEHRVERANSTALTUNG_LVINFO_ANZEIGEN') || CIS_LEHRVERANSTALTUNG_LV
 			'link_onclick'=>$onclick,
 			'text'=>$text,
 			'c4_icon'=> APP_ROOT.'skin/images/button_lvinfo.png',
+			'c4_icon2' => 'fa-regular fa-calendar',
 			'c4_link'=>$c4_link,
 			'c4_linkList'=>$c4_linkList,
 		);

@@ -93,7 +93,7 @@ $datum_obj = new datum();
 
 	<script type="text/javascript" src="../../../vendor/jquery/jquery1/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="../../../vendor/christianbach/tablesorter/jquery.tablesorter.min.js"></script>
-    <script type="text/javascript" src="../../../vendor/tinymce/tinymce4tinymce.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/tinymce/tinymce5/tinymce.min.js"></script>
 
 	<script type="text/javascript">
 	function addInput(sprache, key)
@@ -113,7 +113,7 @@ $datum_obj = new datum();
 		document.sendform.submit();
 	}
     tinymce.init({
-        selector: 'textarea.editor',
+        selector: '#editor',
         toolbar: 'bold, italic, underline, alignleft, aligncenter, bullist, numlist, undo, redo',
         menubar: false,
         plugins: 'lists advlist',
@@ -918,11 +918,19 @@ function printData($sprache, $typ, $key, $data, $locked, $fieldName)
 	switch($typ)
 	{
 		case 'text':
+            $limit = '';
 			if(isset($data[$key]))
 				$value=$data[$key];
 			else
 				$value='';
-			echo '<textarea name="'.$sprache.'['.$key.']" style="width:98%" rows="5" cols="50" '.($locked?'readonly="readonly"':'').'>'.$db->convert_html_chars($value).'</textarea>';
+            if(isset($config_lvinfo_chars[$key])) {
+                $limit = 'maxlength="'.$config_lvinfo_chars[$key].'"';
+                echo $p->t('lvinfo/hinweisZeichenlimit', array($config_lvinfo_chars[$key])) . '<br><br>';
+            }
+            elseif($p->t('lvinfo/internerHinweis_'.$key) != '[[PHRASE:lvinfo/internerHinweis_'.$key.']]') {
+                echo $p->t('lvinfo/internerHinweis_' . $key) . '<br><br>';
+            }
+			echo '<textarea '.$limit.' name="'.$sprache.'['.$key.']" style="width:98%" rows="5" cols="50" '.($locked?'readonly="readonly"':'').'>'.$db->convert_html_chars($value).'</textarea>';
 			break;
 
         case 'editor':

@@ -224,7 +224,7 @@ function bauen($tree)
 			$lastupdate = $row_lvinfo->updateamum;
 		}
 		$data[$i]['lastupdate'] = $datum_obj->formatDatum($lastupdate, 'Y-m-d H:i:s');
-		if(isset($row->childs) && count($row->childs) > 0)
+		if(isset($row->childs) && numberOfElements($row->childs) > 0)
 		{
 			$data[$i]['childs'] = bauen($row->childs);
 		}

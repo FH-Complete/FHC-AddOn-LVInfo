@@ -19,6 +19,7 @@
 /**
  * Hinzufuegen von neuen Menuepunkten bei CIS Lehrveranstaltungen
  */
+require_once('../../../include/functions.inc.php');
 require_once(dirname(__FILE__).'/../include/lvinfo.class.php');
 
 // LV-Info aus Core ausblenden
@@ -59,7 +60,7 @@ if(!defined('CIS_LEHRVERANSTALTUNG_LVINFO_ANZEIGEN') || CIS_LEHRVERANSTALTUNG_LV
 		$lvinfo = new lvinfo();
 		$lvinfo->loadLvinfo($lvid, $angezeigtes_stsem, null, true);
 
-		if(count($lvinfo->result)>0)
+		if(numberOfElements($lvinfo->result)>0)
 		{
 			$link="../../../addons/lvinfo/cis/view.php?lehrveranstaltung_id=".urlencode($lvid)."&studiensemester_kurzbz=".urlencode($angezeigtes_stsem);
 			$onclick="javascript:window.open('".$link."','Lehrveranstaltungsinformation','width=700,height=750,resizable=yes,menuebar=no,toolbar=no,status=yes,scrollbars=yes');";

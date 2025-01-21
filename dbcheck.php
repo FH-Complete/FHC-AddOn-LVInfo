@@ -310,7 +310,7 @@ if ($result = $db->db_query("SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
     if($db->db_num_rows($result) == 0)
     {
         //check if double rows exist
-        $qry = "SELECT count(*) as anzahl
+        $qry = "SELECT numberOfElements(*) as anzahl
                 FROM addon.tbl_lvinfo
                 INNER JOIN(
                   SELECT sprache, lehrveranstaltung_id,studiensemester_kurzbz

@@ -375,7 +375,7 @@ if($semester=='')
 	$semester=null;
 if($lv_obj->loadLehrveranstaltungStudienplan($studienplan_id, $semester,'bezeichnung'))
 {
-	if(count($lv_obj->lehrveranstaltungen)>0)
+	if(numberOfElements($lv_obj->lehrveranstaltungen)>0)
 	{
 		echo '
 		<script type="text/javascript">

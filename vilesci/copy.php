@@ -90,7 +90,7 @@ if(isset($_POST['action']))
 	$lvinfo = new lvinfo();
 	if($lvinfo->loadLvinfo($ziel_lehrveranstaltung_id, $ziel_studiensemester))
 	{
-		if(count($lvinfo->result) > 0 && !isset($_POST['ueberschreiben']))
+		if(numberOfElements($lvinfo->result) > 0 && !isset($_POST['ueberschreiben']))
 		{
 			echo '<br>
 				<span class="error">Fehlgeschlagen: Es sind bereits LV-Infos für die Ziel Lehrveranstaltung vorhanden<br />
@@ -99,7 +99,7 @@ if(isset($_POST['action']))
 		}
 		else
 		{
-			if(count($lvinfo->result) > 0 && isset($_POST['ueberschreiben']))
+			if(numberOfElements($lvinfo->result) > 0 && isset($_POST['ueberschreiben']))
 			{
 				// Wenn Ueberschreiben aktiviert ist, dann werden die vorhandenen Einträge gelöscht.
 				foreach($lvinfo->result as $row)
@@ -282,7 +282,7 @@ function printAuswahl($typ, &$studiengang_kz, &$semester, &$studiensemester, &$l
 	$lvinfo = new lvinfo();
 	if($lvinfo->loadLvinfo($lehrveranstaltung_id, $studiensemester))
 	{
-		if(count($lvinfo->result) > 0)
+		if(numberOfElements($lvinfo->result) > 0)
 		{
 			echo '<span class="ok">LVinfo gefunden</span>';
 		}

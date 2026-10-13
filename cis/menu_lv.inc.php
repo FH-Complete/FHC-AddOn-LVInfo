@@ -78,7 +78,7 @@ if(!defined('CIS_LEHRVERANSTALTUNG_LVINFO_ANZEIGEN') || CIS_LEHRVERANSTALTUNG_LV
 		  )
 		{
 			$text.= "<a href='../../../addons/lvinfo/cis/lvinfo.php?lv_id=$lvid&studiensemester_kurzbz=$angezeigtes_stsem' target='_blank' class='Item'>".$p->t('lehre/lvInfoBearbeiten')."</a>";
-			$c4_linkList[] = [$p->t('lehre/lvInfoBearbeiten'), APP_ROOT.'addons/lvinfo/cis/lvinfo.php?lv_id='.$lvid.'&studiensemester_kurzbz='.$angezeigtes_stsem];
+			$c4_linkList[] = [$p->t('lehre/lvInfoBearbeiten'), APP_ROOT.'cis.php/Cis/Compat/legacy/addons/lvinfo/cis/lvinfo.php?lv_id='.$lvid.'&studiensemester_kurzbz='.$angezeigtes_stsem];
 		}
 		elseif ($is_lector)
 		{
